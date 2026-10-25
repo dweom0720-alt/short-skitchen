@@ -104,6 +104,8 @@ h3{font-size:15px;margin:16px 0 8px;color:var(--sub);font-weight:700}
 .cat .nm{font-weight:700;font-size:14px}
 .cat .ct{font-size:11px;color:var(--sub)}
 .cat.on{outline:2px solid var(--accent)}
+.cat.best{grid-column:1/-1;padding:16px;background:var(--accent-soft);flex-direction:row;justify-content:center;gap:12px}
+.cat.best .nm{font-size:16px;color:var(--accent)}
 .subsec{background:var(--surface);border-radius:16px;padding:12px 14px 14px;margin:10px 0;box-shadow:var(--shadow)}
 .subsec h4{margin:0 0 10px;font-size:15px}
 .subsec h4 small{color:var(--sub);font-weight:500;margin-left:6px}
@@ -276,6 +278,16 @@ nav button.on{color:var(--accent);font-weight:700}
 <script>
 /* ================= 데이터 ================= */
 const CATS = [
+ {id:'home',em:'🏠',nm:'집밥 BEST 100',best:true,subs:[
+  ['밥 한 그릇 뚝딱',['간장계란밥','스팸마요덮밥','참치마요덮밥','김치볶음밥','계란볶음밥','제육덮밥','소불고기덮밥','오므라이스','카레라이스','가지덮밥','두부덮밥','차돌박이덮밥','새우볶음밥','버터장조림밥']],
+  ['국·찌개',['김치찌개','된장찌개','순두부찌개','부대찌개','참치김치찌개','애호박찌개','고추장찌개','콩나물국','미역국','소고기무국','계란국','어묵국','북엇국','감자국','시금치된장국']],
+  ['메인 반찬',['제육볶음','간장불고기','닭볶음탕','안동찜닭','닭갈비','오징어볶음','두루치기','고등어조림','고등어구이','간장닭조림','돼지갈비찜','수육','차돌박이숙주볶음','쭈꾸미볶음','고추장불고기']],
+  ['밑반찬',['계란말이','계란찜','멸치볶음','진미채볶음','어묵볶음','소시지야채볶음','감자채볶음','감자조림','두부조림','메추리알장조림','시금치나물','콩나물무침','무생채','오이무침','애호박볶음','가지볶음','버섯볶음','마늘쫑볶음']],
+  ['전·부침',['김치전','감자전','부추전','애호박전','동그랑땡','참치전','두부부침','해물파전']],
+  ['면 요리',['잔치국수','비빔국수','들기름막국수','칼국수','수제비','잡채','짜파구리','떡볶이','알리오올리오','토마토파스타','야키우동','콩국수']],
+  ['한 그릇 별미',['함박스테이크','규동','오야코동','감바스','마파두부','토마토달걀볶음','또띠아피자','프렌치토스트','에그인헬','유부초밥']],
+  ['5분 초간단',['전자레인지 계란찜','참치주먹밥','두부김치','콘치즈','양배추전','마약계란장','버터감자구이','누룽지탕']],
+ ]},
  {id:'kr',em:'🍚',nm:'한식',subs:[
   ['찌개·국·탕',['김치찌개','된장찌개','순두부찌개','부대찌개','청국장','미역국','소고기무국','콩나물국','북엇국','갈비탕','육개장','감자탕','닭곰탕']],
   ['볶음·구이',['제육볶음','오징어볶음','낙지볶음','쭈꾸미볶음','닭갈비','불고기','두루치기','LA갈비','고등어구이','삼겹살 맛있게 굽기','소불고기','오리주물럭']],
@@ -670,7 +682,7 @@ function renderCatsHome(){
   $('#catHome').classList.remove('hidden'); $('#catDetail').classList.add('hidden');
   $('#todayChips').innerHTML=shuffle(ALL_MENUS).slice(0,8).map(m=>`<button class="chip soft" data-go="${esc(m)}">${esc(m)}</button>`).join('')+
     `<button class="chip" id="todayMore">↻ 다른 추천</button>`;
-  $('#catGrid').innerHTML=CATS.map(c=>`<button class="cat" data-cat="${c.id}"><span class="em">${c.em}</span><span class="nm">${c.nm}</span><span class="ct">${c.subs.reduce((a,s)=>a+s[1].length,0)}가지</span></button>`).join('');
+  $('#catGrid').innerHTML=CATS.map(c=>c.best?`<button class="cat best" data-cat="${c.id}"><span class="em">${c.em}</span><span style="display:flex;flex-direction:column;align-items:flex-start"><span class="nm">${c.nm}</span><span class="ct">쉽고 맛있다는 평이 많은 메뉴 100가지</span></span></button>`:`<button class="cat" data-cat="${c.id}"><span class="em">${c.em}</span><span class="nm">${c.nm}</span><span class="ct">${c.subs.reduce((a,s)=>a+s[1].length,0)}가지</span></button>`).join('');
 }
 function openCat(id){
   const c=CATS.find(x=>x.id===id);
