@@ -1,0 +1,14 @@
+{
+  "name": "쇼츠키친",
+  "short_name": "쇼츠키친",
+  "description": "먹고 싶은 메뉴의 인기 요리 쇼츠를 좋아요순으로",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fff8f1",
+  "theme_color": "#e4572e",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
